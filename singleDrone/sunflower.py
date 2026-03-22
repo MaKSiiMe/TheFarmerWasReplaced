@@ -16,7 +16,7 @@ def farm():
 				if get_ground_type() != Grounds.Soil:
 					till()
 				plant(Entities.Sunflower)
-				use_item(Items.Fertilizer)
+				use_item(Items.Water)
 			if get_entity_type() == Entities.Sunflower:
 				total_on_farm += 1
 				if can_harvest():
@@ -35,7 +35,8 @@ def farm():
 		for pos in buckets[petal]:
 			if total_on_farm <= 9:
 				return
-			x, y = pos
+			x = pos[0]
+			y = pos[1]
 			move_to(x, y)
 			if can_harvest():
 				harvest()
@@ -43,5 +44,5 @@ def farm():
 				if get_ground_type() != Grounds.Soil:
 					till()
 				plant(Entities.Sunflower)
-				use_item(Items.Fertilizer)
+				use_item(Items.Water)
 				total_on_farm += 1

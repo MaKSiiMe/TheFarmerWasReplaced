@@ -7,6 +7,6 @@ def farm():
 				plant(Entities.Tree)
 			else:
 				plant(Entities.Bush)
-			use_item(Items.Fertilizer)
+			use_item(Items.Water)
 			move(North)
 		move(East)

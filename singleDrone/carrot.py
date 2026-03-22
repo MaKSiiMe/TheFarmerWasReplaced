@@ -6,6 +6,6 @@ def farm():
 			if get_ground_type() != Grounds.Soil:
 				till()
 			plant(Entities.Carrot)
-			use_item(Items.Fertilizer)
+			use_item(Items.Water)
 			move(North)
 		move(East)

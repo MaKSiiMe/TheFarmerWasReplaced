@@ -1,7 +1,11 @@
-# Retourne les directions vers les cases non visitées, triées par distance au trésor
-# Les meilleures directions sont à la FIN (pour utiliser pop() en O(1))
+# Returns unvisited directions sorted by distance to treasure
+# Best directions are at the END of the list (for O(1) pop())
 def get_dirs(visited):
-	tx, ty = measure()
+	pos = measure()
+	if pos == None:
+		return []
+	tx = pos[0]
+	ty = pos[1]
 	cx = get_pos_x()
 	cy = get_pos_y()
 	offsets = [(0, 1), (1, 0), (0, -1), (-1, 0)]
@@ -14,7 +18,7 @@ def get_dirs(visited):
 		if can_move(dirs_list[i]) and (nx, ny) not in visited:
 			valid_dirs.append(dirs_list[i])
 			valid_scores.append((tx - nx)**2 + (ty - ny)**2)
-	# Tri par score décroissant → pop() donne la direction la plus proche
+	# Sort descending by score → pop() returns the closest direction to treasure
 	for i in range(len(valid_dirs)):
 		for j in range(len(valid_dirs) - 1 - i):
 			if valid_scores[j] < valid_scores[j + 1]:
@@ -23,7 +27,7 @@ def get_dirs(visited):
 	return valid_dirs
 
 def farm():
-	# Créer le labyrinthe
+	# Create the maze
 	plant(Entities.Bush)
 	substance = get_world_size() * 2**(num_unlocked(Unlocks.Mazes) - 1)
 	use_item(Items.Weird_Substance, substance)
@@ -33,10 +37,14 @@ def farm():
 	stack = [get_dirs(visited)]
 	back = []
 
+	# DFS with measure() heuristic: always explore the direction closest to the treasure first
 	while get_entity_type() != Entities.Treasure:
+		if len(stack) == 0:
+			stack.append(get_dirs(visited))
+			continue
 		dirs = stack[-1]
 		if len(dirs) > 0:
-			# Avancer dans la meilleure direction disponible
+			# Move in the best available direction
 			d = dirs.pop()
 			cx = get_pos_x()
 			cy = get_pos_y()
@@ -53,7 +61,7 @@ def farm():
 			move(d)
 			stack.append(get_dirs(visited))
 		else:
-			# Cul-de-sac : backtrack vers la case précédente
+			# Dead end: backtrack to previous tile
 			stack.pop()
 			if len(back) > 0:
 				b = back.pop()
@@ -67,9 +75,3 @@ def farm():
 					move(East)
 
 	harvest()
-
-	# Retour à (0, 0)
-	while get_pos_y() != 0:
-		move(South)
-	while get_pos_x() != 0:
-		move(West)
