@@ -18,9 +18,12 @@ declare -A MAP=(
 	[cactus]=Cactus
 	[bone]=Dinausor
 	[gold]=Maze
-	[main]=core [move_to]=core [succes]=core [clear]=core
-	[classement]=leaderboard [lb_hay]=leaderboard [reset]=leaderboard [leaderboard_pumpkins]=leaderboard
+	[main]=core [move_to]=core
+	[classement]=leaderboard [lb_hay]=leaderboard [reset]=leaderboard
 )
+
+# Fichiers du jeu volontairement non versionnés (utilitaires, succès Steam)
+IGNORE=" __builtins__ succes clear leaderboard_pumpkins "
 
 if [[ ! -d "$GAME" ]]; then
 	echo "Dossier du jeu introuvable : $GAME" >&2
@@ -40,7 +43,7 @@ fi
 
 for f in "$GAME"/*.py; do
 	name="$(basename "$f" .py)"
-	if [[ "$name" == "__builtins__" ]]; then
+	if [[ "$IGNORE" == *" $name "* ]]; then
 		continue
 	fi
 	dir="${MAP[$name]:-}"

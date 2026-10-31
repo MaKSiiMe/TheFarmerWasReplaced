@@ -21,8 +21,8 @@ Un dossier par ressource, plus le code commun et les scripts de classement.
 | `Cactus/` | `cactus.py` | Tri colonnes puis lignes, une seule récolte |
 | `Dinausor/` | `bone.py` | Snake (chapeau dinosaure) |
 | `Maze/` | `gold.py` | Labyrinthes réutilisés |
-| `core/` | `main.py`, `move_to.py`, `succes.py`, `clear.py` | Orchestrateur, déplacements, succès Steam |
-| `leaderboard/` | `classement.py`, `lb_hay.py`, `reset.py`, … | Courses de classement |
+| `core/` | `main.py`, `move_to.py` | Orchestrateur et déplacements |
+| `leaderboard/` | `classement.py`, `lb_hay.py`, `reset.py` | Courses de classement (lanceur, Hay_Single, Fastest Reset) |
 
 Le jeu impose des fichiers à plat dans son dossier de sauvegarde (les `import` se font
 par nom de fichier). Ce dépôt les range par dossier, et [`sync.sh`](sync.sh) fait le lien :
