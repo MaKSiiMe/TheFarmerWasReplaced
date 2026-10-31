@@ -4,7 +4,7 @@
 #   "Hay_Single"
 #   "Fastest_Reset"  (course)  /  "Reset_Test" (simulation d'essai, ne compte pas)
 #   "Couts"  : coûts de tous les déblocages à tous les niveaux (fenêtre Sortie, rien n'est dépensé)
-CHOIX = "Hay_Single"
+CHOIX = "Wood"
 
 COURSES = {
 	"Hay": [Leaderboards.Hay, "lb_hay"],
