@@ -108,7 +108,8 @@ def _worker(x0, y0, w, h, main, item, target, homes):
 				s = home_slot.pop(p)
 				claims[s] = claims[s] - 1
 			_prepare(main)
-			if get_water() < 0.75 and num_items(Items.Water) >= 1:
+			# Assez d'eau pour tous les drones, sinon ils se la disputent au même instant
+			if get_water() < 0.75 and num_items(Items.Water) >= 32:
 				use_item(Items.Water)
 			_companion(p, main, x0, y0, w, h, is_home, content, claims, home_slot)
 

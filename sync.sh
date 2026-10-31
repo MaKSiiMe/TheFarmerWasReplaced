@@ -19,7 +19,9 @@ declare -A MAP=(
 	[bone]=Dinausor
 	[gold]=Maze
 	[main]=core [move_to]=core
-	[classement]=leaderboard [lb_hay]=leaderboard [reset]=leaderboard
+	[classement]=leaderboard [reset]=leaderboard
+	[lb_hay]=leaderboard [lb_hay_single]=leaderboard [lb_wood]=leaderboard [lb_carrot]=leaderboard
+	[lb_pumpkins]=leaderboard [lb_cactus]=leaderboard [lb_sunflowers]=leaderboard [lb_maze]=leaderboard [lb_dinosaur]=leaderboard
 )
 
 # Fichiers du jeu volontairement non versionnés (utilitaires, succès Steam)
