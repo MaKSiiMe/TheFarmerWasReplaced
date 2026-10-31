@@ -80,5 +80,27 @@ elif CHOIX == "Mesure_Hay":
 		nb += 1
 	quick_print("MESURE foin normal =", base, "avec bonus =", bonus, "bonus sur", nbb, "/", nb, "recoltes")
 	quick_print("MESURE eau en stock =", num_items(Items.Water), "power =", num_items(Items.Power))
+	# 4. Demandes de compagnon : lisibles avant maturité ? distance et type demandés
+	harvest()
+	quick_print("MESURE demande juste apres recolte (herbe pas mure) :", get_companion())
+	dist = {}
+	types = {}
+	for _ in range(300):
+		while not can_harvest():
+			pass
+		c = get_companion()
+		if c != None:
+			d = abs(c[1][0] - get_pos_x()) + abs(c[1][1] - get_pos_y())
+			if d in dist:
+				dist[d] += 1
+			else:
+				dist[d] = 1
+			if c[0] in types:
+				types[c[0]] += 1
+			else:
+				types[c[0]] = 1
+		harvest()
+	quick_print("MESURE distances demandees (300) :", dist)
+	quick_print("MESURE types demandes (300) :", types)
 else:
 	print("Choix inconnu :", CHOIX)
